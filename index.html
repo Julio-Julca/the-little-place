@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Little Place — Café & Coworking, Miraflores</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1A1A18;
+    --off-white: #F8F6F1;
+    --warm-white: #FDFCF9;
+    --moss: #4A5C3F;
+    --terracotta: #C4673A;
+    --sand: #E8DDD0;
+    --muted: #7A7269;
+    --light-moss: #D6DDD2;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(253,252,249,0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(26,26,24,0.07);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .nav-logo span { color: var(--moss); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--moss); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding-top: 72px;
+    display: grid;
+    grid-template-columns: 55% 45%;
+  }
+  .hero-left {
+    background: var(--off-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 5rem;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 2rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--moss);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5.5vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--moss);
+  }
+  .hero-sub {
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-width: 400px;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--off-white);
+    text-decoration: none;
+    padding: 0.9rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--moss); }
+  .btn-secondary {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--moss); border-color: var(--moss); }
+
+  .hero-right {
+    background: var(--moss);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero-illustration {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    margin-top: 2rem;
+  }
+  .hero-stat {
+    background: var(--moss);
+    padding: 1.2rem 1.5rem;
+  }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--off-white);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.72rem;
+    color: rgba(248,246,241,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  /* STRIP */
+  .strip {
+    background: var(--terracotta);
+    color: var(--off-white);
+    padding: 0.9rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .strip-dot { opacity: 0.4; }
+
+  /* WHAT WE ARE */
+  .what {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 70vh;
+  }
+  .what-side {
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .what-side.left { background: var(--warm-white); }
+  .what-side.right { background: var(--sand); }
+  .what-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+  }
+  .what-side h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .what-side p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.85;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  .feature-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+  .feature-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--moss);
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 6rem 5rem;
+    background: var(--off-white);
+  }
+  .section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--sand);
+  }
+  .section-top h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    color: var(--ink);
+  }
+  .section-top p { font-size: 0.85rem; color: var(--muted); max-width: 300px; text-align: right; line-height: 1.6; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--sand);
+  }
+  .service-card {
+    background: var(--warm-white);
+    padding: 2.5rem 2rem;
+    transition: background 0.2s;
+  }
+  .service-card:hover { background: var(--off-white); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: var(--light-moss);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+  .service-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.75; font-weight: 300; }
+  .service-price {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--terracotta);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* SPACE */
+  .space {
+    background: var(--ink);
+    color: var(--off-white);
+    padding: 6rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .space h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .space h2 em { color: var(--moss); font-style: italic; }
+  .space p { font-size: 0.9rem; color: rgba(248,246,241,0.55); line-height: 1.85; font-weight: 300; margin-bottom: 1rem; }
+  .space-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .space-feat {
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 1.2rem;
+  }
+  .space-feat-icon { font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .space-feat h4 { font-size: 0.85rem; font-weight: 500; color: var(--off-white); margin-bottom: 0.2rem; }
+  .space-feat p { font-size: 0.78rem; color: rgba(248,246,241,0.4); margin: 0; line-height: 1.5; }
+  .space-visual {
+    background: #2A2A28;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .plan-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .plan-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .plan-name { font-size: 0.88rem; color: var(--off-white); }
+  .plan-desc { font-size: 0.75rem; color: rgba(248,246,241,0.35); margin-top: 0.2rem; }
+  .plan-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--moss);
+    white-space: nowrap;
+  }
+  .plan-price small { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: rgba(248,246,241,0.3); }
+
+  /* MEMBERSHIP */
+  .membership {
+    padding: 6rem 5rem;
+    background: var(--sand);
+  }
+  .membership h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .membership > p { font-size: 0.9rem; color: var(--muted); margin-bottom: 3rem; font-weight: 300; }
+  .membership-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .membership-card {
+    background: var(--warm-white);
+    padding: 2.5rem 2rem;
+    border-top: 3px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .membership-card:hover { border-color: var(--moss); }
+  .membership-card.featured {
+    background: var(--moss);
+    color: var(--off-white);
+    border-color: var(--moss);
+  }
+  .membership-card .badge {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .membership-card.featured .badge { color: rgba(248,246,241,0.6); }
+  .membership-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+  .membership-card.featured h3 { color: var(--off-white); }
+  .membership-card .price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .membership-card.featured .price { color: var(--off-white); }
+  .membership-card .price small { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--muted); }
+  .membership-card.featured .price small { color: rgba(248,246,241,0.5); }
+  .membership-perks { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .membership-perks li {
+    font-size: 0.83rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .membership-card.featured .membership-perks li { color: rgba(248,246,241,0.7); }
+  .membership-perks li::before { content: '✓'; color: var(--moss); font-weight: 700; }
+  .membership-card.featured .membership-perks li::before { color: rgba(248,246,241,0.8); }
+
+  /* CTA */
+  .cta-section {
+    padding: 5rem;
+    background: var(--terracotta);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .cta-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--off-white);
+    line-height: 1.2;
+    max-width: 500px;
+  }
+  .cta-section h2 em { font-style: italic; }
+  .cta-actions { display: flex; flex-direction: column; gap: 1rem; }
+  .btn-white {
+    background: var(--off-white);
+    color: var(--terracotta);
+    text-decoration: none;
+    padding: 0.9rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+    text-align: center;
+  }
+  .btn-white:hover { opacity: 0.9; }
+  .cta-note { font-size: 0.8rem; color: rgba(248,246,241,0.6); text-align: center; }
+
+  /* LOCATION */
+  .location {
+    padding: 5rem;
+    background: var(--off-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .location h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+  .loc-list { display: flex; flex-direction: column; gap: 1.2rem; }
+  .loc-row { display: flex; gap: 1rem; align-items: flex-start; }
+  .loc-icon { color: var(--moss); font-size: 1rem; min-width: 1.5rem; margin-top: 2px; }
+  .loc-text h4 { font-size: 0.82rem; font-weight: 500; color: var(--ink); margin-bottom: 0.2rem; }
+  .loc-text p { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
+  .map-box {
+    background: var(--sand);
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(248,246,241,0.4);
+    padding: 2.5rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--off-white);
+  }
+  .footer-logo span { color: var(--moss); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: rgba(248,246,241,0.35); text-decoration: none; transition: color 0.2s; letter-spacing: 0.05em; }
+  .footer-links a:hover { color: var(--moss); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero, .what, .space, .location { grid-template-columns: 1fr; }
+    .hero-right { min-height: 50vh; }
+    .services-grid, .membership-grid { grid-template-columns: 1fr 1fr; }
+    .services, .membership, .space, .cta-section, .location, footer { padding: 3rem 1.5rem; }
+    .what-side { padding: 3rem 1.5rem; }
+    nav ul { display: none; }
+    .section-top { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .section-top p { text-align: left; }
+  }
+  @media (max-width: 600px) {
+    .services-grid, .membership-grid, .space-features { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">The Little <span>Place</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#coworking">Space</a></li>
+    <li><a href="#membership">Membership</a></li>
+    <li><a href="#location">Find Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-tag">Café & Coworking — Miraflores, Lima</span>
+    <h1 class="hero-title">Your third place.<br><em>Right where<br>you need it.</em></h1>
+    <p class="hero-sub">The Little Place is a café and coworking space in Miraflores built for professionals who work better outside the home — with great coffee, reliable WiFi, and a community that actually feels good to be part of.</p>
+    <div class="hero-actions">
+      <a href="#membership" class="btn-primary">See Memberships</a>
+      <a href="#services" class="btn-secondary">What we offer</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-illustration">
+      <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" width="100%" max-width="380">
+        <!-- Table surface -->
+        <ellipse cx="210" cy="310" rx="170" ry="22" fill="rgba(0,0,0,0.15)"/>
+        <rect x="60" y="200" width="300" height="18" rx="4" fill="#3D5234"/>
+        <rect x="80" y="218" width="260" height="90" rx="4" fill="#3D5234"/>
+        <!-- Laptop -->
+        <rect x="110" y="145" width="200" height="130" rx="6" fill="#2A3D22"/>
+        <rect x="118" y="153" width="184" height="114" rx="3" fill="#1A2818"/>
+        <!-- Screen content (code lines) -->
+        <rect x="128" y="165" width="80" height="4" rx="2" fill="rgba(74,92,63,0.8)"/>
+        <rect x="128" y="175" width="120" height="4" rx="2" fill="rgba(74,92,63,0.5)"/>
+        <rect x="134" y="185" width="90" height="4" rx="2" fill="rgba(74,92,63,0.6)"/>
+        <rect x="134" y="195" width="60" height="4" rx="2" fill="rgba(74,92,63,0.4)"/>
+        <rect x="128" y="205" width="100" height="4" rx="2" fill="rgba(74,92,63,0.7)"/>
+        <rect x="128" y="215" width="70" height="4" rx="2" fill="rgba(74,92,63,0.5)"/>
+        <rect x="134" y="225" width="110" height="4" rx="2" fill="rgba(74,92,63,0.3)"/>
+        <!-- Coffee cup -->
+        <rect x="315" y="165" width="44" height="50" rx="4" fill="#E8DDD0"/>
+        <rect x="319" y="169" width="36" height="36" rx="2" fill="#C4673A" opacity="0.9"/>
+        <path d="M359 180 Q370 180 370 192 Q370 204 359 204" stroke="#D4956A" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <ellipse cx="337" cy="169" rx="18" ry="5" fill="#A8532A"/>
+        <!-- Steam -->
+        <path d="M328 155 Q332 143 328 133" stroke="rgba(248,246,241,0.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M337 150 Q342 137 337 126" stroke="rgba(248,246,241,0.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M346 154 Q351 142 346 132" stroke="rgba(248,246,241,0.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Plant -->
+        <rect x="52" y="240" width="12" height="36" rx="2" fill="#3D5234"/>
+        <ellipse cx="58" cy="210" rx="28" ry="36" fill="#4A5C3F"/>
+        <ellipse cx="42" cy="225" rx="18" ry="24" fill="#3D5234"/>
+        <ellipse cx="74" cy="222" rx="20" ry="26" fill="#3D5234"/>
+        <!-- Notebook -->
+        <rect x="135" y="290" width="80" height="10" rx="2" fill="#E8DDD0"/>
+        <rect x="138" y="285" width="4" height="10" rx="1" fill="#C4673A"/>
+        <!-- WiFi symbol top right -->
+        <path d="M355 60 Q380 38 405 60" stroke="rgba(248,246,241,0.2)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M362 72 Q380 56 398 72" stroke="rgba(248,246,241,0.3)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M369 84 Q380 74 391 84" stroke="rgba(248,246,241,0.5)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="380" cy="92" r="4" fill="rgba(248,246,241,0.6)"/>
+        <!-- Tagline -->
+        <text x="210" y="46" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="rgba(248,246,241,0.5)" font-style="italic" letter-spacing="1">work here. feel good here.</text>
+      </svg>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">7am</div>
+        <div class="hero-stat-label">Opens daily</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">500+</div>
+        <div class="hero-stat-label">Mbps WiFi</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">S/10</div>
+        <div class="hero-stat-label">Drop-in/hour</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Fresh daily coffee</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <span>Monday – Friday: 7am – 9pm</span>
+  <span class="strip-dot">·</span>
+  <span>Saturday: 8am – 6pm</span>
+  <span class="strip-dot">·</span>
+  <span>Miraflores, Lima</span>
+  <span class="strip-dot">·</span>
+  <span>Walk-in & Membership</span>
+</div>
+
+<!-- WHAT WE ARE -->
+<section class="what" id="about">
+  <div class="what-side left">
+    <p class="what-eyebrow">A place to work</p>
+    <h2>Not just a café. Not just an office.</h2>
+    <p>The Little Place is designed for people who need focus — freelancers, remote workers, entrepreneurs, and students who've outgrown their kitchen table but don't need a full office lease.</p>
+    <p>We've thought about every detail that affects your productivity: the noise level, the chair height, the light, the WiFi speed, and yes — the quality of the coffee.</p>
+    <div class="feature-list">
+      <div class="feature-item"><div class="feature-dot"></div>High-speed dedicated fiber internet (500 Mbps)</div>
+      <div class="feature-item"><div class="feature-dot"></div>Ergonomic seating and standing desk options</div>
+      <div class="feature-item"><div class="feature-dot"></div>Quiet zones and collaboration zones</div>
+      <div class="feature-item"><div class="feature-dot"></div>Private phone booth for calls</div>
+      <div class="feature-item"><div class="feature-dot"></div>Printing and scanning included with membership</div>
+    </div>
+  </div>
+  <div class="what-side right">
+    <p class="what-eyebrow">A place to belong</p>
+    <h2>The professional community of Miraflores.</h2>
+    <p>One of the real costs of remote work is isolation. The Little Place is built to fix that — without forcing it. You work at your own pace, and the community is there when you want it.</p>
+    <p>Monthly networking evenings, skill-share workshops, and a members-only WhatsApp group connect you to other professionals working in the same space.</p>
+    <div class="feature-list">
+      <div class="feature-item"><div class="feature-dot"></div>Monthly member networking events</div>
+      <div class="feature-item"><div class="feature-dot"></div>Skill-share and mini-workshop program</div>
+      <div class="feature-item"><div class="feature-dot"></div>Members WhatsApp community</div>
+      <div class="feature-item"><div class="feature-dot"></div>Business address for registered members</div>
+      <div class="feature-item"><div class="feature-dot"></div>Referral network among members</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-top">
+    <h2>What we offer</h2>
+    <p>Everything you need to work well — coffee, space, and a community around you.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>Specialty Coffee</h3>
+      <p>Single-origin Peruvian beans from Junín, roasted fresh weekly. Espresso, Americano, Latte, Cappuccino, and cold brew on tap.</p>
+      <span class="service-price">From S/ 8</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>Fresh Pastries & Snacks</h3>
+      <p>Baked fresh every morning — croissants, pan de yema, muffins. Light lunch options from noon. Gluten-free options available daily.</p>
+      <span class="service-price">From S/ 7</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3>Drop-In Coworking</h3>
+      <p>No commitment, no reservation. Walk in, pick a seat, connect to WiFi. Ideal for those who need a focused space a few hours a week.</p>
+      <span class="service-price">S/ 10 / hour</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <h3>Private Meeting Room</h3>
+      <p>A quiet, professional space for client meetings, interviews, or team calls. Whiteboard, screen, and video conferencing included.</p>
+      <span class="service-price">S/ 45 / hour</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <h3>Day Pass</h3>
+      <p>Full access to the coworking space for one full day. Includes unlimited WiFi, one coffee, and access to all common areas.</p>
+      <span class="service-price">S/ 55 / day</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <h3>Monthly Membership</h3>
+      <p>Unlimited access, priority seat reservation, storage locker, business address, and full community membership. Our best value.</p>
+      <span class="service-price">From S/ 299 / month</span>
+    </div>
+  </div>
+</section>
+
+<!-- SPACE -->
+<section class="space" id="coworking">
+  <div>
+    <h2>A space designed for<br><em>real work.</em></h2>
+    <p>We've spent a lot of time in bad coworking spaces. Too loud, too cold, too dark, or too corporate. The Little Place is the opposite: warm, calm, intentionally designed to help you focus.</p>
+    <p>Located in the heart of Miraflores — walkable from most residential buildings and a short Uber from San Isidro — with secure bike parking and a great spot for that midday walk.</p>
+    <div class="space-features">
+      <div class="space-feat">
+        <div class="space-feat-icon">⚡</div>
+        <h4>500 Mbps fiber</h4>
+        <p>Dedicated line, never shared with the café side</p>
+      </div>
+      <div class="space-feat">
+        <div class="space-feat-icon">🔇</div>
+        <h4>Quiet zones</h4>
+        <p>Noise-managed areas with no-call policy</p>
+      </div>
+      <div class="space-feat">
+        <div class="space-feat-icon">📞</div>
+        <h4>Phone booth</h4>
+        <p>Soundproofed pod for calls and video meetings</p>
+      </div>
+      <div class="space-feat">
+        <div class="space-feat-icon">🔒</div>
+        <h4>Secure lockers</h4>
+        <p>Day lockers for all members, free of charge</p>
+      </div>
+    </div>
+  </div>
+  <div class="space-visual">
+    <div class="plan-item">
+      <div>
+        <div class="plan-name">Drop-In</div>
+        <div class="plan-desc">No commitment · Per hour</div>
+      </div>
+      <div class="plan-price">S/ 10 <small>/ hr</small></div>
+    </div>
+    <div class="plan-item">
+      <div>
+        <div class="plan-name">Day Pass</div>
+        <div class="plan-desc">Full day · Coffee included</div>
+      </div>
+      <div class="plan-price">S/ 55 <small>/ day</small></div>
+    </div>
+    <div class="plan-item">
+      <div>
+        <div class="plan-name">Flex Member</div>
+        <div class="plan-desc">10 days / month · Community access</div>
+      </div>
+      <div class="plan-price">S/ 179 <small>/ mo</small></div>
+    </div>
+    <div class="plan-item">
+      <div>
+        <div class="plan-name">Full Member</div>
+        <div class="plan-desc">Unlimited · All perks included</div>
+      </div>
+      <div class="plan-price">S/ 299 <small>/ mo</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="membership" id="membership">
+  <h2>Find your plan</h2>
+  <p>No hidden fees. Cancel anytime. Your first week is always free.</p>
+  <div class="membership-grid">
+    <div class="membership-card">
+      <span class="badge">Casual</span>
+      <h3>Flex Membership</h3>
+      <div class="price">S/ 179 <small>/ month</small></div>
+      <ul class="membership-perks">
+        <li>10 coworking days per month</li>
+        <li>High-speed WiFi access</li>
+        <li>Community events included</li>
+        <li>Members WhatsApp group</li>
+        <li>10% discount on café orders</li>
+      </ul>
+    </div>
+    <div class="membership-card featured">
+      <span class="badge">Most Popular</span>
+      <h3>Full Membership</h3>
+      <div class="price">S/ 299 <small>/ month</small></div>
+      <ul class="membership-perks">
+        <li>Unlimited coworking access</li>
+        <li>Priority seat reservation</li>
+        <li>Secure personal locker</li>
+        <li>Business address included</li>
+        <li>2 meeting room hours/month</li>
+        <li>Free coffee every morning</li>
+      </ul>
+    </div>
+    <div class="membership-card">
+      <span class="badge">Teams</span>
+      <h3>Team Plan</h3>
+      <div class="price">S/ 499 <small>/ month</small></div>
+      <ul class="membership-perks">
+        <li>Up to 3 team members</li>
+        <li>Dedicated team table</li>
+        <li>4 meeting room hours/month</li>
+        <li>All Full Membership perks</li>
+        <li>Custom invoicing available</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Your first week at The Little Place is <em>on us.</em></h2>
+  <div class="cta-actions">
+    <a href="https://wa.me/51999999999?text=Hola%2C%20quiero%20reservar%20mi%20semana%20gratis%20en%20The%20Little%20Place" class="btn-white" target="_blank">Claim Your Free Week</a>
+    <p class="cta-note">Message us on WhatsApp · No credit card needed</p>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<section class="location" id="location">
+  <div>
+    <h2>Find The Little Place</h2>
+    <div class="loc-list">
+      <div class="loc-row">
+        <div class="loc-icon">📍</div>
+        <div class="loc-text">
+          <h4>Address</h4>
+          <p>Av. Benavides, Miraflores, Lima, Perú</p>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="loc-icon">🕐</div>
+        <div class="loc-text">
+          <h4>Hours</h4>
+          <p>Monday – Friday: 7:00 AM – 9:00 PM</p>
+          <p>Saturday: 8:00 AM – 6:00 PM</p>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="loc-icon">💬</div>
+        <div class="loc-text">
+          <h4>WhatsApp</h4>
+          <p>+51 999 999 999</p>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="loc-icon">📸</div>
+        <div class="loc-text">
+          <h4>Instagram</h4>
+          <p>@thelittleplace.miraflores</p>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="loc-icon">✉️</div>
+        <div class="loc-text">
+          <h4>Email</h4>
+          <p>hola@thelittleplace.pe</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="map-box">
+    Miraflores, Lima — Google Maps coming soon
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">The Little <span>Place</span></div>
+    <p style="margin-top:0.3rem">Café & Coworking · Miraflores, Lima, Perú</p>
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#membership">Membership</a>
+    <a href="https://instagram.com/thelittleplace.miraflores" target="_blank">Instagram</a>
+  </div>
+</footer>
+
+</body>
+</html>
